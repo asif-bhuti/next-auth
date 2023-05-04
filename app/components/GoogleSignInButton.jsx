@@ -1,12 +1,12 @@
 "use client";
 
-import { useSearchParam } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 import Button from "./Button";
 
 const GoogleSignInButton = () => {
-  const searchParams = useSearchParam();
+  const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
 
   return (
