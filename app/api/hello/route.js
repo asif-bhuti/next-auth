@@ -1,17 +1,13 @@
-import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '../../api/auth/[...nextauth]/route'
 
 export async function GET() {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions)
 
   if (!session) {
-    return NextResponse.redirect({
-      message: "You are not logged in",
-      status: 302,
-      url: "/signin",
-    });
+    return NextResponse.json({ message: 'You are not logged in.' })
   }
 
-  return NextResponse.redirect({ name: session.user.name });
+  return NextResponse.json({ name: session.user.name })
 }
